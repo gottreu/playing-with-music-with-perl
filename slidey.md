@@ -5,11 +5,8 @@ class: center, middle
 ???
 my name's Brian Gottreu and this is playing WITH music with perl
 
-though it's possible to create audio directly with perl, in real-ish time (demo)
-that's not the focus
-
-here's a sonic taste
-play jump.mid
+though it's possible to create audio directly with perl, in real-ish time
+that's not the focus here
 
 ---
 name: erg
@@ -21,13 +18,13 @@ class: middle, erg
 this talk will focus on creating midi files and letting someone else
 worry about rendering it
 
-w're using fluidsynth which uses soundfonts
+we're using fluidsynth which uses soundfonts
 
 but you could also use timidity or wildmidi
 
 or csound, chuck, puredata
 
-or comeerical programs like reason
+or commercial programs like reason
 ---
 ```perl
 use strict;
@@ -69,8 +66,6 @@ ptich is midi note value 0 to 127
 instead we can use midi:score
 ---
 # MIDI::Score
-???
-a list of lists
 ---
 ```perl
 use strict;
@@ -106,7 +101,7 @@ my $opus = MIDI::Opus->new({'tracks' => [ $track ]});
 $opus->write_to_file( 'midi-score.mid' );
 ```
 ???
-it's still a list of lists, but now instead of a delta time and seperate note on and note off events
+it's still a list of lists, but now instead of a delta time and separate note on and note off events
 
 there is a single not event that has an absolute time and a duration
 
@@ -122,7 +117,7 @@ italian_to_bpm($marking)
 ms_to_bpm($ms,$beat)
 ```
 ???
-allegro adante, etc
+italian being allegro, adante, etc
 
 optional second argument to specify beat other than quarter note
 ---
@@ -143,7 +138,7 @@ print "@tone_num"; # 0 4 7 11
 ???
 get a list of note names
 
-or a list of semiton offsets, which i prefer because transposition is arithmetic
+or a list of semitone offsets, which I prefer because transposition is arithmetic
 ---
 # Music::Chord::Note
 ```perl
@@ -174,7 +169,6 @@ inverse, give it notes, get chord back
 
 doesn't work with semitone offsets
 
-(well volunteered)
 ---
 # Music::Scales
 ```perl
@@ -186,7 +180,7 @@ my @blues = get_scale_nums('blues');
 print join(" ",@blues);                    # "0 3 5 6 7 10"
 ```
 ???
-like music::chord::note you cqn get names or semitone offsets
+like music::chord::note you can get names or semitone offsets
 ---
 ```
   1 ionian / major / hypolydian
@@ -235,7 +229,7 @@ for my $scale (1..7,12,14,17,18) {
 }
 ```
 ???
-when the scales stop being 7 notes in legnth, it gets less musical
+when the scales stop being 7 notes in length, it gets less musical
 ---
 # Music::Chord::Positions
 ---
@@ -262,11 +256,9 @@ for my $chord (@{$inv->chord_inv([ Music::Chord::Note->new->chord_num('13') ])})
 # Music::Tension::PlompLevelt
 # Music::Tension::Cope
 ???
-Plomp-Levelt consonance curve calculations based on work by William Sethares and others ("SEE ALSO" for links). None of this will make sense without some grounding in music theory and the referenced papers.
+Plomp-Levelt consonance curve calculations based on work by William Sethares and others. None of this will make sense without some grounding in music theory and the referenced papers.
 
-Cope -
-tension analysis for equal temperament music
-using the method outlined by David Cope in the text "Computer Models of Musical Creativity"
+Cope - tension analysis for equal temperament music using the method outlined by David Cope in the text "Computer Models of Musical Creativity"
 ---
 # Music::Tension::PlompLevelt
 # Music::Tension::Cope
@@ -323,7 +315,7 @@ for my $i (0..127) {
 }
 ```
 ???
-i definietely think of drum patters like this
+I definitely think of drum patters like this
 
 it's piano roll like
 ---
